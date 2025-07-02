@@ -1,0 +1,64 @@
+# lm
+
+lm (Line-Mismatch), compares two files and outputs unique lines from each file to `stdout`, identifying lines that appear in one file but not the other.
+
+## Usage Example
+
+Here, a file called `fileA.txt` contains a list of items. `fileB.txt` contains another list, some items overlapping with `fileA.txt` and some unique. `lm` is used to display the unique lines from both files.
+
+```
+▶ cat fileA.txt
+Apple
+Banana
+Orange
+
+▶ cat fileB.txt
+Banana
+Orange
+Grape
+Mango
+
+▶ lm fileA.txt fileB.txt
+L1: fileA.txt: Apple
+L4: fileB.txt: Grape
+L5: fileB.txt: Mango
+
+▶ cat fileA.txt
+Apple
+Banana
+Orange
+
+▶ cat fileB.txt
+Banana
+Orange
+Grape
+Mango
+```
+
+Note that `lm` only outputs unique lines to `stdout`. You can redirect the output to a file for further use:
+
+```
+▶ lm fileA.txt fileB.txt > unique-lines.txt
+▶ cat unique-lines.txt
+L1: fileA.txt: Apple
+L4: fileB.txt: Grape
+L5: fileB.txt: Mango
+```
+
+## Flags
+
+(None currently implemented.)
+
+## Install
+
+You can install using Go:
+
+```
+go install -v github.com/armamini/lm@latest
+```
+
+Or download the source code and run it directly:
+
+```
+go run script.go <file1> <file2>
+```
